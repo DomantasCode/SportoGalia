@@ -1,0 +1,23 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 342 329" width="342" height="329">
+	<title>logo-white</title>
+	<style>
+		.s0 { fill: #3d1172 } 
+		.s1 { fill: #e6e52d } 
+		.s2 { fill: #ffffff } 
+	</style>
+	<g id="Layer_4">
+		<g>
+			<g>
+			</g>
+		</g>
+		<g>
+		</g>
+	</g>
+	<g id="Layer_2">
+		<g>
+			<path id="Shape 1" fill-rule="evenodd" class="s0" d="m51 7h243c22.6 0 41 18.4 41 41v234c0 22.6-18.4 41-41 41h-243c-22.6 0-41-18.4-41-41v-234c0-22.6 18.4-41 41-41z"/>
+			<path fill-rule="evenodd" class="s1" d="m229.1 179.2l-122.6 117.1 77.4-106.6-69.4-38.8z"/>
+			<path fill-rule="evenodd" class="s2" d="m113.7 151l122.6-117.2-77.3 106.6 69.4 38.8z"/>
+		</g>
+	</g>
+</svg>

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import trainersData from '@/data/trainers.json'
 
 export const metadata = {
   title: 'Treneriai - Sportogalia',
@@ -6,40 +7,7 @@ export const metadata = {
 }
 
 export default function TreneriaiPage() {
-  const trainers = [
-    {
-      name: 'Laura Petraitytė',
-      role: 'Vyriausioji kineziterapeutė',
-      qualification: 'Kineziterapijos magistrė, 10 metų patirtis',
-      specialization: 'Laikysenos korekcija, vaikų kineziterapija',
-      description: 'Laura turi daugiau nei 10 metų patirtį dirbant su vaikais. Jos specializacija - laikysenos korekcija ir stuburo sveikatos stiprinimas. Laura yra sertifikuota vaikų kineziterapeutė ir nuolat tobulina savo įgūdžius tarptautiniuose kursuose.',
-      image: '/images/news-images/naujienos-6-card.jpg',
-    },
-    {
-      name: 'Jonas Kazlauskas',
-      role: 'Sporto treneris',
-      qualification: 'Kūno kultūros magistras, 8 metų patirtis',
-      specialization: 'Funkcinės treniruotės, jėgos lavinimas',
-      description: 'Jonas specializuojasi funkcinėse treniruotėse ir jėgos lavinime vaikams. Jo treniruotės yra dinamiškos, įdomios ir pritaikytos skirtingo amžiaus vaikams. Jonas moka sukurti motyvuojančią atmosferą ir įkvėpti vaikus judėti.',
-      image: '/images/news-images/naujienos-7-card.jpg',
-    },
-    {
-      name: 'Greta Urbonaitė',
-      role: 'Kineziterapeutė',
-      qualification: 'Kineziterapijos bakalaure, 5 metų patirtis',
-      specialization: 'Pėdų korekcija, koordinacijos lavinimas',
-      description: 'Greta specializuojasi pėdų problemų prevencijoje ir koordinacijos lavinime. Ji yra baigusi tarptautinius kursus apie vaikų judėjimo raidos ypatumus ir moka pritaikyti pratimus kiekvieno vaiko individualiam lygiui.',
-      image: '/images/news-images/naujienos-8-card.jpg',
-    },
-    {
-      name: 'Tomas Gudaitis',
-      role: 'Sporto treneris',
-      qualification: 'Sporto trenerio kvalifikacija, 6 metų patirtis',
-      specialization: 'Grupinės treniruotės, žaidiminis sportas',
-      description: 'Tomas yra energingas treneris, kurio treniruotės visuomet kupinos juoko ir geros nuotaikos. Jis puikiai supranta, kaip per žaidimus ir linksmą veiklą lavinti vaiko fizinius gebėjimus ir ugdyti komandinio darbo įgūdžius.',
-      image: '/images/news-images/naujienos-9-card.jpg',
-    },
-  ]
+  const trainers = trainersData
 
   return (
     <div className="bg-white">

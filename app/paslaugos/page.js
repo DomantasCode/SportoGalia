@@ -93,7 +93,8 @@ export default function PaslaugosPage() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group relative bg-gradient-to-br from-white to-gray-50 border-2 border-primary-100 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-primary-300 overflow-hidden"
+              id={`paslauga-${index + 1}`}
+              className="group relative bg-gradient-to-br from-white to-gray-50 border-2 border-primary-100 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-primary-300 overflow-hidden scroll-mt-24"
             >
               {/* Decorative corner */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-100 to-primary-200 rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>

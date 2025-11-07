@@ -166,7 +166,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/paslaugos" className="relative h-80 rounded-2xl overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300">
+            <Link href="/paslaugos#paslauga-1" className="relative h-80 rounded-2xl overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300">
               <Image
                 src="/images/news-images/naujienos-10-card.jpg"
                 alt="Grupinė kineziterapija vaikams"
@@ -181,7 +181,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link href="/paslaugos" className="relative h-80 rounded-2xl overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300">
+            <Link href="/paslaugos#paslauga-2" className="relative h-80 rounded-2xl overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300">
               <Image
                 src="/images/news-images/naujienos-11-card.jpg"
                 alt="Individuali kineziterapija"
@@ -196,7 +196,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link href="/paslaugos" className="relative h-80 rounded-2xl overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300">
+            <Link href="/paslaugos#paslauga-3" className="relative h-80 rounded-2xl overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300">
               <Image
                 src="/images/news-images/naujienos-13-card.jpg"
                 alt="Funkcinės treniruotės"
@@ -211,7 +211,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link href="/paslaugos" className="relative h-80 rounded-2xl overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300">
+            <Link href="/paslaugos#paslauga-4" className="relative h-80 rounded-2xl overflow-hidden group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300">
               <Image
                 src="/images/news-images/naujienos-14-card.jpg"
                 alt="Šeimos treniruotės"

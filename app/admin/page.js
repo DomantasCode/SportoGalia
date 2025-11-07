@@ -15,6 +15,9 @@ export default function AdminPage() {
   const [showNewsForm, setShowNewsForm] = useState(false)
   const [showTrainerForm, setShowTrainerForm] = useState(false)
   const [message, setMessage] = useState('')
+  const [newsImagePreview, setNewsImagePreview] = useState(null)
+  const [trainerImagePreview, setTrainerImagePreview] = useState(null)
+  const [uploading, setUploading] = useState(false)
 
   // Check if already authenticated
   useEffect(() => {
@@ -70,10 +73,73 @@ export default function AdminPage() {
     setTimeout(() => setMessage(''), 3000)
   }
 
+  // UPLOAD IMAGE
+  const uploadImage = async (file) => {
+    const formData = new FormData()
+    formData.append('file', file)
+
+    setUploading(true)
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        return data.url
+      } else {
+        showMessage('❌ Nepavyko įkelti nuotraukos')
+        return null
+      }
+    } catch (error) {
+      showMessage('❌ Klaida įkeliant nuotrauką')
+      return null
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  const handleNewsImageChange = (e) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setNewsImagePreview(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleTrainerImageChange = (e) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setTrainerImagePreview(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
   // NEWS CRUD OPERATIONS
   const handleNewsSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData(e.target)
+
+    // Handle image upload
+    let imageUrl = formData.get('image') // existing URL or null
+    const imageFile = formData.get('imageFile')
+
+    if (imageFile && imageFile.size > 0) {
+      const uploadedUrl = await uploadImage(imageFile)
+      if (uploadedUrl) {
+        imageUrl = uploadedUrl
+      } else {
+        showMessage('❌ Nepavyko įkelti nuotraukos')
+        return
+      }
+    }
 
     const newsData = {
       title: formData.get('title'),
@@ -82,7 +148,7 @@ export default function AdminPage() {
       content: formData.get('content'),
       author: formData.get('author'),
       date: formData.get('date'),
-      image: formData.get('image'),
+      image: imageUrl || editingNews?.image || '',
     }
 
     try {
@@ -109,6 +175,7 @@ export default function AdminPage() {
       }
       loadNews()
       setShowNewsForm(false)
+      setNewsImagePreview(null)
       e.target.reset()
     } catch (error) {
       showMessage('❌ Klaida! Nepavyko išsaugoti.')
@@ -134,6 +201,7 @@ export default function AdminPage() {
   const startEditNews = (newsItem) => {
     setEditingNews(newsItem)
     setShowNewsForm(true)
+    setNewsImagePreview(newsItem.image)
   }
 
   // TRAINERS CRUD OPERATIONS
@@ -141,13 +209,27 @@ export default function AdminPage() {
     e.preventDefault()
     const formData = new FormData(e.target)
 
+    // Handle image upload
+    let imageUrl = formData.get('image') // existing URL or null
+    const imageFile = formData.get('imageFile')
+
+    if (imageFile && imageFile.size > 0) {
+      const uploadedUrl = await uploadImage(imageFile)
+      if (uploadedUrl) {
+        imageUrl = uploadedUrl
+      } else {
+        showMessage('❌ Nepavyko įkelti nuotraukos')
+        return
+      }
+    }
+
     const trainerData = {
       name: formData.get('name'),
       role: formData.get('role'),
       qualification: formData.get('qualification'),
       specialization: formData.get('specialization'),
       description: formData.get('description'),
-      image: formData.get('image'),
+      image: imageUrl || editingTrainer?.image || '',
     }
 
     try {
@@ -174,6 +256,7 @@ export default function AdminPage() {
       }
       loadTrainers()
       setShowTrainerForm(false)
+      setTrainerImagePreview(null)
       e.target.reset()
     } catch (error) {
       showMessage('❌ Klaida! Nepavyko išsaugoti.')
@@ -199,6 +282,7 @@ export default function AdminPage() {
   const startEditTrainer = (trainer) => {
     setEditingTrainer(trainer)
     setShowTrainerForm(true)
+    setTrainerImagePreview(trainer.image)
   }
 
   // LOGIN SCREEN
@@ -336,6 +420,7 @@ export default function AdminPage() {
                 onClick={() => {
                   setShowNewsForm(!showNewsForm)
                   setEditingNews(null)
+                  setNewsImagePreview(null)
                 }}
                 className="bg-primary-600 text-white px-6 py-3 rounded-xl hover:bg-primary-700 transition shadow-lg hover:shadow-xl flex items-center gap-2 font-semibold"
               >
@@ -431,18 +516,42 @@ export default function AdminPage() {
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Nuotrauka (URL) *
+                        Nuotrauka
                       </label>
                       <input
-                        type="text"
-                        name="image"
-                        defaultValue={editingNews?.image}
-                        placeholder="/images/news-images/..."
-                        required
+                        type="file"
+                        name="imageFile"
+                        accept="image/*"
+                        onChange={handleNewsImageChange}
                         className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 transition"
                       />
+                      <input type="hidden" name="image" value={editingNews?.image || ''} />
                     </div>
                   </div>
+
+                  {/* Image Preview */}
+                  {newsImagePreview && (
+                    <div className="mt-4">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Nuotraukos peržiūra:
+                      </label>
+                      <div className="relative w-full h-64 rounded-lg overflow-hidden border-2 border-gray-300">
+                        <Image
+                          src={newsImagePreview}
+                          alt="Preview"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {uploading && (
+                    <div className="text-center py-4">
+                      <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+                      <p className="text-gray-600 mt-2">Įkeliama nuotrauka...</p>
+                    </div>
+                  )}
 
                   <div className="flex gap-4 pt-4">
                     <button
@@ -456,6 +565,7 @@ export default function AdminPage() {
                       onClick={() => {
                         setShowNewsForm(false)
                         setEditingNews(null)
+                        setNewsImagePreview(null)
                       }}
                       className="bg-gray-300 text-gray-700 px-8 py-3 rounded-xl hover:bg-gray-400 transition font-semibold"
                     >
@@ -530,6 +640,7 @@ export default function AdminPage() {
                 onClick={() => {
                   setShowTrainerForm(!showTrainerForm)
                   setEditingTrainer(null)
+                  setTrainerImagePreview(null)
                 }}
                 className="bg-primary-600 text-white px-6 py-3 rounded-xl hover:bg-primary-700 transition shadow-lg hover:shadow-xl flex items-center gap-2 font-semibold"
               >
@@ -615,17 +726,41 @@ export default function AdminPage() {
 
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Nuotrauka (URL) *
+                      Nuotrauka
                     </label>
                     <input
-                      type="text"
-                      name="image"
-                      defaultValue={editingTrainer?.image}
-                      placeholder="/images/news-images/..."
-                      required
+                      type="file"
+                      name="imageFile"
+                      accept="image/*"
+                      onChange={handleTrainerImageChange}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 transition"
                     />
+                    <input type="hidden" name="image" value={editingTrainer?.image || ''} />
                   </div>
+
+                  {/* Image Preview */}
+                  {trainerImagePreview && (
+                    <div className="mt-4">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Nuotraukos peržiūra:
+                      </label>
+                      <div className="relative w-full h-64 rounded-lg overflow-hidden border-2 border-gray-300">
+                        <Image
+                          src={trainerImagePreview}
+                          alt="Preview"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {uploading && (
+                    <div className="text-center py-4">
+                      <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+                      <p className="text-gray-600 mt-2">Įkeliama nuotrauka...</p>
+                    </div>
+                  )}
 
                   <div className="flex gap-4 pt-4">
                     <button
@@ -639,6 +774,7 @@ export default function AdminPage() {
                       onClick={() => {
                         setShowTrainerForm(false)
                         setEditingTrainer(null)
+                        setTrainerImagePreview(null)
                       }}
                       className="bg-gray-300 text-gray-700 px-8 py-3 rounded-xl hover:bg-gray-400 transition font-semibold"
                     >

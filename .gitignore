@@ -40,3 +40,7 @@ nul
 # IDE
 .idea/
 .vscode/
+
+# uploads (but keep .gitkeep)
+public/images/uploads/*
+!public/images/uploads/.gitkeep

@@ -18,6 +18,7 @@ export default function AdminPage() {
   const [newsImagePreview, setNewsImagePreview] = useState(null)
   const [trainerImagePreview, setTrainerImagePreview] = useState(null)
   const [uploading, setUploading] = useState(false)
+  const [autoSlug, setAutoSlug] = useState('')
 
   // Check if already authenticated
   useEffect(() => {
@@ -71,6 +72,26 @@ export default function AdminPage() {
   const showMessage = (msg) => {
     setMessage(msg)
     setTimeout(() => setMessage(''), 3000)
+  }
+
+  // GENERATE SLUG FROM TITLE
+  const generateSlug = (title) => {
+    return title
+      .toLowerCase()
+      .trim()
+      .replace(/[ąčęėįšųūž]/g, (char) => {
+        const map = { 'ą': 'a', 'č': 'c', 'ę': 'e', 'ė': 'e', 'į': 'i', 'š': 's', 'ų': 'u', 'ū': 'u', 'ž': 'z' }
+        return map[char] || char
+      })
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+  }
+
+  const handleTitleChange = (e) => {
+    const title = e.target.value
+    if (!editingNews) {
+      setAutoSlug(generateSlug(title))
+    }
   }
 
   // UPLOAD IMAGE
@@ -143,7 +164,7 @@ export default function AdminPage() {
 
     const newsData = {
       title: formData.get('title'),
-      slug: formData.get('slug'),
+      slug: autoSlug || editingNews?.slug || generateSlug(formData.get('title')),
       excerpt: formData.get('excerpt'),
       content: formData.get('content'),
       author: formData.get('author'),
@@ -176,6 +197,7 @@ export default function AdminPage() {
       loadNews()
       setShowNewsForm(false)
       setNewsImagePreview(null)
+      setAutoSlug('')
       e.target.reset()
     } catch (error) {
       showMessage('❌ Klaida! Nepavyko išsaugoti.')
@@ -202,6 +224,7 @@ export default function AdminPage() {
     setEditingNews(newsItem)
     setShowNewsForm(true)
     setNewsImagePreview(newsItem.image)
+    setAutoSlug(newsItem.slug)
   }
 
   // TRAINERS CRUD OPERATIONS
@@ -421,6 +444,7 @@ export default function AdminPage() {
                   setShowNewsForm(!showNewsForm)
                   setEditingNews(null)
                   setNewsImagePreview(null)
+                  setAutoSlug('')
                 }}
                 className="bg-primary-600 text-white px-6 py-3 rounded-xl hover:bg-primary-700 transition shadow-lg hover:shadow-xl flex items-center gap-2 font-semibold"
               >
@@ -435,32 +459,27 @@ export default function AdminPage() {
                   {editingNews ? '✏️ Redaguoti naujieną' : '➕ Nauja naujiena'}
                 </h3>
                 <form onSubmit={handleNewsSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Pavadinimas *
-                      </label>
-                      <input
-                        type="text"
-                        name="title"
-                        defaultValue={editingNews?.title}
-                        required
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 transition"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Slug (URL) *
-                      </label>
-                      <input
-                        type="text"
-                        name="slug"
-                        defaultValue={editingNews?.slug}
-                        required
-                        placeholder="pvz: vasaros-stovykla-2024"
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 transition"
-                      />
-                    </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Pavadinimas *
+                    </label>
+                    <input
+                      type="text"
+                      name="title"
+                      defaultValue={editingNews?.title}
+                      onChange={handleTitleChange}
+                      required
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 transition"
+                      placeholder="pvz: Vasaros stovykla 2024"
+                    />
+                    {autoSlug && (
+                      <p className="mt-2 text-sm text-gray-600 flex items-center gap-2">
+                        <span className="font-semibold">URL:</span>
+                        <code className="bg-gray-100 px-2 py-1 rounded text-primary-600">
+                          /naujienos/{autoSlug}
+                        </code>
+                      </p>
+                    )}
                   </div>
 
                   <div>
@@ -489,7 +508,7 @@ export default function AdminPage() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         Autorius *
@@ -514,19 +533,21 @@ export default function AdminPage() {
                         className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 transition"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Nuotrauka
-                      </label>
-                      <input
-                        type="file"
-                        name="imageFile"
-                        accept="image/*"
-                        onChange={handleNewsImageChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 transition"
-                      />
-                      <input type="hidden" name="image" value={editingNews?.image || ''} />
-                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Nuotrauka
+                    </label>
+                    <input
+                      type="file"
+                      name="imageFile"
+                      accept="image/*"
+                      onChange={handleNewsImageChange}
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 transition file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
+                    />
+                    <p className="mt-1 text-xs text-gray-500">PNG, JPG, GIF iki 10MB</p>
+                    <input type="hidden" name="image" value={editingNews?.image || ''} />
                   </div>
 
                   {/* Image Preview */}
@@ -566,6 +587,7 @@ export default function AdminPage() {
                         setShowNewsForm(false)
                         setEditingNews(null)
                         setNewsImagePreview(null)
+                        setAutoSlug('')
                       }}
                       className="bg-gray-300 text-gray-700 px-8 py-3 rounded-xl hover:bg-gray-400 transition font-semibold"
                     >
@@ -733,8 +755,9 @@ export default function AdminPage() {
                       name="imageFile"
                       accept="image/*"
                       onChange={handleTrainerImageChange}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 transition"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 transition file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
                     />
+                    <p className="mt-1 text-xs text-gray-500">PNG, JPG, GIF iki 10MB</p>
                     <input type="hidden" name="image" value={editingTrainer?.image || ''} />
                   </div>
 

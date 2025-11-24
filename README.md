@@ -72,6 +72,20 @@ Sportas/
 └── README.md
 ```
 
+## ⚡ Greitas Startas
+
+### Metodas 1: Vercel Deployment (REKOMENDUOJAMAS)
+
+**Jūsų svetainė gali būti live per 15 minučių!**
+
+1. Push kodą į GitHub
+2. Import į Vercel: [vercel.com/new](https://vercel.com/new)
+3. Deploy!
+
+📖 **Pilnas vadovas:** Skaitykite [DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md)
+
+### Metodas 2: Lokalus Paleidimas
+
 ## Instaliavimas ir paleidimas
 
 ### 1. Klonuokite projektą
@@ -152,6 +166,12 @@ Formos (kontaktai ir registracija) naudoja Nodemailer. Jei nekonfigūruosite SMT
 **Alternatyvos:**
 - **Development:** Naudokite [Ethereal Email](https://ethereal.email/) - automatiškai generuoja fake email paskyrą testavimui
 - **Production:** Gmail, SendGrid, AWS SES, Mailgun, ir kt.
+
+## 📚 Dokumentacija
+
+- **[README.md](README.md)** - Šis failas, bendras apžvalga
+- **[DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md)** - Pilnas deployment vadovas į Vercel
+- **[KOMERCINIS-PASIULYMAS.md](KOMERCINIS-PASIULYMAS.md)** - Produkto aprašymas ir vertė
 
 ## Dizainas
 

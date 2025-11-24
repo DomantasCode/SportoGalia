@@ -1,5 +1,6 @@
 import Script from 'next/script'
 import Image from 'next/image'
+import ContactForm from '@/components/ContactForm'
 
 export const metadata = {
   title: 'Registracija - Sportogalia',
@@ -169,34 +170,39 @@ export default function RegistracijaPage() {
             </div>
           </div>
 
-          {/* Additional Contact */}
+          {/* Contact Form */}
           <div>
             <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Kiti klausimai?
+                Turite klausimų?
               </h2>
               <p className="text-gray-600 mb-6">
-                Jei turite klausimų ar reikia pagalbos registruojantis, nedvejodami susisiekite su mumis telefonu ar el. paštu.
+                Parašykite mums ir mes su jumis susisieksime
               </p>
-              <div className="space-y-3">
-                <a
-                  href="tel:+37060000000"
-                  className="flex items-center gap-3 text-gray-700 hover:text-primary-600 transition-colors"
-                >
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <span>+370 600 00000</span>
-                </a>
-                <a
-                  href="mailto:info@sportogalia.lt"
-                  className="flex items-center gap-3 text-gray-700 hover:text-primary-600 transition-colors"
-                >
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <span>info@sportogalia.lt</span>
-                </a>
+              <ContactForm />
+
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <p className="text-sm text-gray-500 mb-3">Arba susisiekite tiesiogiai:</p>
+                <div className="space-y-2">
+                  <a
+                    href="tel:+37060000000"
+                    className="flex items-center gap-3 text-gray-700 hover:text-primary-600 transition-colors"
+                  >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span>+370 600 00000</span>
+                  </a>
+                  <a
+                    href="mailto:info@sportogalia.lt"
+                    className="flex items-center gap-3 text-gray-700 hover:text-primary-600 transition-colors"
+                  >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span>info@sportogalia.lt</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

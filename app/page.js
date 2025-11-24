@@ -1,7 +1,27 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import FAQ from '@/components/FAQ'
 
 export default function Home() {
+  const homeFaqs = [
+    {
+      question: 'Nuo kokio amžiaus vaikai gali lankyti treniruotes?',
+      answer: 'Priimame vaikus nuo 3 metų amžiaus. Kiekvienam amžiui turime pritaikytas programas ir grupes.',
+    },
+    {
+      question: 'Ar galima ateiti į bandomąją treniruotę?',
+      answer: 'Taip, siūlome pirmą bandomąją treniruotę, kad vaikas galėtų susipažinti su treneriu ir aplinka.',
+    },
+    {
+      question: 'Ką reikia atsinešti į treniruotę?',
+      answer: 'Patogius sportinius drabužius, sportinę avalynę (švarią), vandens buteliuką ir gerą nuotaiką!',
+    },
+    {
+      question: 'Kas yra kineziterapija?',
+      answer: 'Kineziterapija - tai gydymas judesiu. Ji padeda formuoti tinkamą laikyseną, stiprinti raumenis, lavinti koordinaciją ir pusiausvyrą.',
+    },
+  ]
+
   const features = [
     {
       title: 'Kineziterapija',
@@ -237,6 +257,66 @@ export default function Home() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 sm:py-32 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FAQ items={homeFaqs} />
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-24 sm:py-32 bg-gray-50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-4">
+              Susisiekite su mumis
+            </h2>
+            <p className="text-xl text-gray-600">
+              Mielai atsakysime į visus jūsų klausimus
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center group">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 mb-4 group-hover:bg-primary-200 transition-all duration-300">
+                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">El. paštas</h3>
+              <a href="mailto:info@sportogalia.lt" className="text-primary-600 hover:text-primary-700 transition-colors">
+                info@sportogalia.lt
+              </a>
+            </div>
+
+            <div className="text-center group">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 mb-4 group-hover:bg-primary-200 transition-all duration-300">
+                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Telefonas</h3>
+              <a href="tel:+37060000000" className="text-primary-600 hover:text-primary-700 transition-colors">
+                +370 600 00000
+              </a>
+            </div>
+
+            <div className="text-center group">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 mb-4 group-hover:bg-primary-200 transition-all duration-300">
+                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Darbo laikas</h3>
+              <p className="text-gray-600 text-sm">
+                Pr-Pn: 9:00 - 20:00<br />
+                Š: 10:00 - 16:00
+              </p>
+            </div>
           </div>
         </div>
       </section>

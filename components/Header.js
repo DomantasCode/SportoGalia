@@ -8,12 +8,9 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const navigation = [
-    { name: 'Pagrindinis', href: '/' },
     { name: 'Apie mus', href: '/apie-mus' },
     { name: 'Naujienos', href: '/naujienos' },
     { name: 'Paslaugos', href: '/paslaugos' },
-    { name: 'Treneriai', href: '/treneriai' },
-    { name: 'Kontaktai', href: '/kontaktai' },
     { name: 'Registracija', href: '/registracija' },
   ]
 

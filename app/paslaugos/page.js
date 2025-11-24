@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import FAQ from '@/components/FAQ'
 
 export const metadata = {
   title: 'Paslaugos - Sportogalia',
@@ -6,6 +7,25 @@ export const metadata = {
 }
 
 export default function PaslaugosPage() {
+  const serviceFaqs = [
+    {
+      question: 'Kiek kainuoja treniruotės?',
+      answer: 'Kainos priklauso nuo pasirinktos programos ir treniruočių dažnumo. Susisiekite su mumis dėl išsamios informacijos apie kainas.',
+    },
+    {
+      question: 'Ar reikia išankstinės registracijos?',
+      answer: 'Taip, rekomenduojame registruotis iš anksto, nes grupėse vietų skaičius ribotas. Registruotis galite per mūsų svetainę arba telefonu.',
+    },
+    {
+      question: 'Ar turite individualias treniruotes?',
+      answer: 'Taip, siūlome tiek grupines, tiek individualias kineziterapijos ir sporto treniruotes.',
+    },
+    {
+      question: 'Kaip atšaukti treniruotę?',
+      answer: 'Treniruotę galite atšaukti susisiekę su mumis telefonu arba el. paštu ne vėliau kaip 24 val. iki treniruotės pradžios.',
+    },
+  ]
+
   const services = [
     {
       title: 'Grupinė kineziterapija vaikams',
@@ -200,8 +220,15 @@ export default function PaslaugosPage() {
         </div>
       </div>
 
+      {/* FAQ Section */}
+      <div className="py-16 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FAQ items={serviceFaqs} />
+        </div>
+      </div>
+
       {/* CTA */}
-      <div className="py-16">
+      <div className="py-16 bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Norite sužinoti daugiau?

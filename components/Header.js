@@ -15,20 +15,21 @@ export default function Header() {
   ]
 
   return (
-    <header className="bg-dark-900/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-dark-800">
+    <header className="glass-header sticky top-0 z-50 transition-all duration-300">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
-        <div className="flex w-full items-center justify-between py-4 lg:py-5">
+        <div className="flex w-full items-center justify-between py-4">
           <div className="flex items-center">
             <Link href="/" className="group flex items-center gap-3">
-              <Image
-                src="/images/logo-white.svg"
-                alt="Sportogalia Logo"
-                width={40}
-                height={40}
-                className="group-hover:scale-110 transition-transform"
-              />
-              <span className="text-2xl font-bold text-white group-hover:text-primary-300 transition-colors">
-                Sportogalia
+              <div className="relative w-12 h-12 group-hover:scale-110 transition-transform duration-300">
+                <Image
+                  src="/images/logo.png"
+                  alt="Sportogalia Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <span className="text-2xl font-bold font-display tracking-tight text-primary-700 group-hover:text-secondary-600 transition-colors">
+                Sporto<span className="text-secondary-600">Galia</span>
               </span>
             </Link>
           </div>
@@ -39,14 +40,14 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="px-4 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-dark-800 rounded-lg transition-all"
+                className="px-4 py-2 text-sm font-medium text-primary-700 hover:text-secondary-600 hover:bg-primary-50 rounded-full transition-all duration-200"
               >
                 {link.name}
               </Link>
             ))}
             <Link
               href="/registracija"
-              className="ml-4 px-6 py-2.5 text-base font-semibold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg shadow-md shadow-primary-600/30 hover:shadow-lg hover:shadow-primary-600/50 hover:scale-105 transition-all"
+              className="ml-4 px-6 py-2.5 text-sm font-bold text-white bg-secondary-500 hover:bg-secondary-600 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
             >
               Registracija
             </Link>
@@ -56,7 +57,7 @@ export default function Header() {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-lg p-2.5 text-gray-300 hover:bg-dark-800 transition-colors"
+              className="inline-flex items-center justify-center rounded-lg p-2.5 text-primary-700 hover:bg-primary-50 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span className="sr-only">Atidaryti meniu</span>
@@ -75,12 +76,12 @@ export default function Header() {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-dark-800 py-4 space-y-1">
+          <div className="lg:hidden border-t border-secondary-200 py-4 space-y-1 animate-fade-in-up bg-cream/95 backdrop-blur-md absolute left-0 right-0 px-4 shadow-xl rounded-b-3xl">
             {navigation.slice(0, -1).map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="block rounded-lg px-4 py-3 text-base font-medium text-gray-300 hover:bg-dark-800 hover:text-white transition-colors"
+                className="block rounded-xl px-4 py-3 text-base font-medium text-primary-700 hover:bg-primary-50 hover:text-secondary-600 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
@@ -88,7 +89,7 @@ export default function Header() {
             ))}
             <Link
               href="/registracija"
-              className="block mx-2 mt-4 px-4 py-3 text-center text-base font-semibold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg shadow-md hover:shadow-lg transition-all"
+              className="block mx-2 mt-4 px-4 py-3 text-center text-base font-bold text-white bg-secondary-500 hover:bg-secondary-600 rounded-xl shadow-md transition-all"
               onClick={() => setMobileMenuOpen(false)}
             >
               Registracija

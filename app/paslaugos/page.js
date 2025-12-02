@@ -84,23 +84,30 @@ export default function PaslaugosPage() {
   return (
     <div className="bg-white">
       {/* Header with Image */}
-      <div className="relative bg-dark-900 overflow-hidden">
-        <div className="absolute inset-0">
+      <div className="relative bg-primary-900 overflow-hidden">
+        {/* Background Blobs */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+          <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary-500/20 rounded-full blur-[100px] animate-blob"></div>
+          <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-500/20 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
+        </div>
+
+        <div className="absolute inset-0 z-0">
           <Image
             src="/images/news-images/naujienos-17-card.jpg"
             alt="Paslaugos"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-20 mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-dark-900 via-dark-900/90 to-dark-900/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-900/50 to-primary-900/90"></div>
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl font-display mb-6">
               Mūsų paslaugos
             </h1>
-            <p className="mt-4 text-xl text-gray-200">
+            <p className="text-xl text-primary-100 leading-relaxed">
               Profesionali kineziterapija ir sporto užsiėmimai vaikams bei šeimoms
             </p>
           </div>

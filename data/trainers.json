@@ -34,5 +34,86 @@
     "specialization": "Grupinės treniruotės, žaidiminis sportas",
     "description": "Tomas yra energingas treneris, kurio treniruotės visuomet kupinos juoko ir geros nuotaikos. Jis puikiai supranta, kaip per žaidimus ir linksmą veiklą lavinti vaiko fizinius gebėjimus ir ugdyti komandinio darbo įgūdžius.",
     "image": "/images/news-images/naujienos-9-card.jpg"
+  },
+  {
+    "id": "5",
+    "name": "Ieva Jankauskaitė",
+    "role": "Kineziterapeutė",
+    "qualification": "Kineziterapijos magistrė",
+    "specialization": "Kūdikių kineziterapija",
+    "description": "Ieva dirba su pačiais mažiausiais mūsų klientais. Ji padeda kūdikiams taisyklingai vystytis ir moko tėvelius mankštos pagrindų.",
+    "image": "/images/news-images/naujienos-10-card.jpg"
+  },
+  {
+    "id": "6",
+    "name": "Mantas Petkus",
+    "role": "Fizinio rengimo treneris",
+    "qualification": "LSU absolventas",
+    "specialization": "Atletinis rengimas",
+    "description": "Mantas padeda jauniesiems sportininkams pasiruošti varžyboms ir stiprinti kūną, kad išvengtų traumų.",
+    "image": "/images/news-images/naujienos-11-card.jpg"
+  },
+  {
+    "id": "7",
+    "name": "Viktorija Žukauskė",
+    "role": "Jogos instruktorė",
+    "qualification": "Sertifikuota jogos mokytoja",
+    "specialization": "Vaikų joga",
+    "description": "Viktorija veda jogos užsiėmimus vaikams, mokydama juos susikaupimo, lankstumo ir taisyklingo kvėpavimo.",
+    "image": "/images/news-images/naujienos-12-card.jpg"
+  },
+  {
+    "id": "8",
+    "name": "Paulius Vaitkus",
+    "role": "Plaukimo treneris",
+    "qualification": "Plaukimo trenerio licencija",
+    "specialization": "Mokymas plaukti",
+    "description": "Paulius moko vaikus saugiai elgtis vandenyje ir plaukimo technikos pagrindų.",
+    "image": "/images/news-images/naujienos-13-card.jpg"
+  },
+  {
+    "id": "9",
+    "name": "Karolina Stankevičiūtė",
+    "role": "Šokių mokytoja",
+    "qualification": "Choreografijos bakalauras",
+    "specialization": "Šiuolaikiniai šokiai",
+    "description": "Karolina moko vaikus išreikšti save per šokį, lavina ritmikos pojūtį ir koordinaciją.",
+    "image": "/images/news-images/naujienos-14-card.jpg"
+  },
+  {
+    "id": "10",
+    "name": "Darius Mikalauskas",
+    "role": "Krepšinio treneris",
+    "qualification": "Krepšinio trenerio licencija",
+    "specialization": "Krepšinio pagrindai",
+    "description": "Darius moko krepšinio technikos ir komandinio žaidimo subtilybių.",
+    "image": "/images/news-images/naujienos-15-card.jpg"
+  },
+  {
+    "id": "11",
+    "name": "Simona Lukošiūtė",
+    "role": "Gimnastikos trenerė",
+    "qualification": "Buvusi gimnastė",
+    "specialization": "Meninė gimnastika",
+    "description": "Simona padeda mergaitėms lavinti lankstumą, graciją ir laikyseną per gimnastikos elementus.",
+    "image": "/images/news-images/naujienos-16-card.jpg"
+  },
+  {
+    "id": "12",
+    "name": "Artūras Žemaitis",
+    "role": "Futbolo treneris",
+    "qualification": "UEFA B licencija",
+    "specialization": "Futbolo technika",
+    "description": "Artūras moko futbolo paslapčių, kamuolio valdymo ir žaidimo taktikos.",
+    "image": "/images/news-images/naujienos-17-card.jpg"
+  },
+  {
+    "id": "13",
+    "name": "Eglė Mažeikaitė",
+    "role": "Kineziterapeutė",
+    "qualification": "Kineziterapijos bakalauras",
+    "specialization": "Reabilitacija po traumų",
+    "description": "Eglė padeda vaikams greičiau atsigauti po traumų ir grįžti į aktyvų sportą.",
+    "image": "/images/news-images/naujienos-18-card.jpg"
   }
 ]

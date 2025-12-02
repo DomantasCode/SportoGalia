@@ -52,7 +52,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Name */}
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="name" className="block text-sm font-bold text-primary-900 mb-2 uppercase tracking-wide">
           Vardas ir pavardė *
         </label>
         <input
@@ -62,14 +62,14 @@ export default function ContactForm() {
           required
           value={formData.name}
           onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+          className="w-full px-4 py-3 border-2 border-primary-100 rounded-xl focus:ring-4 focus:ring-secondary-500/20 focus:border-secondary-500 outline-none transition-all duration-300 bg-white hover:border-secondary-300"
           placeholder="Jūsų vardas ir pavardė"
         />
       </div>
 
       {/* Email */}
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="email" className="block text-sm font-bold text-primary-900 mb-2 uppercase tracking-wide">
           El. paštas *
         </label>
         <input
@@ -79,14 +79,14 @@ export default function ContactForm() {
           required
           value={formData.email}
           onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+          className="w-full px-4 py-3 border-2 border-primary-100 rounded-xl focus:ring-4 focus:ring-secondary-500/20 focus:border-secondary-500 outline-none transition-all duration-300 bg-white hover:border-secondary-300"
           placeholder="jusu@email.lt"
         />
       </div>
 
       {/* Phone */}
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="phone" className="block text-sm font-bold text-primary-900 mb-2 uppercase tracking-wide">
           Telefonas
         </label>
         <input
@@ -95,14 +95,14 @@ export default function ContactForm() {
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+          className="w-full px-4 py-3 border-2 border-primary-100 rounded-xl focus:ring-4 focus:ring-secondary-500/20 focus:border-secondary-500 outline-none transition-all duration-300 bg-white hover:border-secondary-300"
           placeholder="+370 600 00000"
         />
       </div>
 
       {/* Message */}
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="message" className="block text-sm font-bold text-primary-900 mb-2 uppercase tracking-wide">
           Žinutė *
         </label>
         <textarea
@@ -112,7 +112,7 @@ export default function ContactForm() {
           rows={6}
           value={formData.message}
           onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition resize-none"
+          className="w-full px-4 py-3 border-2 border-primary-100 rounded-xl focus:ring-4 focus:ring-secondary-500/20 focus:border-secondary-500 outline-none transition-all duration-300 resize-none bg-white hover:border-secondary-300"
           placeholder="Parašykite savo žinutę..."
         />
       </div>
@@ -120,11 +120,10 @@ export default function ContactForm() {
       {/* Status message */}
       {status.message && (
         <div
-          className={`p-4 rounded-md ${
-            status.type === 'success'
+          className={`p-4 rounded-xl font-medium ${status.type === 'success'
               ? 'bg-green-50 text-green-800 border border-green-200'
               : 'bg-red-50 text-red-800 border border-red-200'
-          }`}
+            }`}
         >
           {status.message}
         </div>
@@ -134,7 +133,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-blue-600 text-white py-3 px-6 rounded-md font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition"
+        className="w-full bg-secondary-500 text-white py-4 px-8 rounded-full font-bold text-lg shadow-lg hover:bg-secondary-600 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-secondary-500/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
       >
         {isSubmitting ? 'Siunčiama...' : 'Siųsti žinutę'}
       </button>
